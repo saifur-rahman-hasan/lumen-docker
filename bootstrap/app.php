@@ -94,8 +94,12 @@ $app->routeMiddleware([
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
+
 $app->register(Laravel\Sail\SailServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(Irazasyed\Larasupport\Providers\ArtisanServiceProvider::class);
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -103,7 +107,7 @@ $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 |--------------------------------------------------------------------------
 |
 | Next we will include the routes file so that they can all be added to
-| the application. This will provide all of the URLs the application
+| the application. This will provide all the URLs the application
 | can respond to, as well as the controllers that may handle them.
 |
 */
@@ -112,6 +116,13 @@ $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
+});
+
+$app->router->group([
+    'prefix' => 'api',
+    'namespace' => 'App\Http\Controllers',
+], function ($router) {
+    require __DIR__.'/../routes/api.php';
 });
 
 return $app;
