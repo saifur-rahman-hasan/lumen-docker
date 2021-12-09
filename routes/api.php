@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(){
     return response()->json([
-        'appName' => "Soluta Dashboard Report Servie",
+        'users' => \App\Models\User::all(),
+        'appName' => "Soluta Dashboard Report Service",
         'appVersion' => app()->version()
     ]);
 });
